@@ -1,0 +1,11 @@
+{
+  "id": "assisted-living-resident",
+  "name": "Assisted Living Resident",
+  "demographics": {
+    "ageGroup": "Older adults, typically 65+",
+    "livingSituation": "Assisted living facility resident"
+  },
+  "behavior": "May have limited mobility or health issues. Relies on caretakers for many tasks.",
+  "needs": "Reliable phone and internet services, easy-to-use technology, and clear communication.",
+  "painpoints": "Technical difficulties, lack of understanding of modern technology, and the need for patient and clear customer support."
+}

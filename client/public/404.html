@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Loading...</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body { font-family: system-ui, sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+    .msg { color:#444; font-size:14px; }
+  </style>
+  <script>
+    // SPA fallback: Load index.html content then restore original deep link path.
+    (async () => {
+      const originalPath = window.location.pathname + window.location.search + window.location.hash;
+      try {
+        const res = await fetch('/index.html', { credentials: 'same-origin' });
+        const html = await res.text();
+        // Replace document with index.html so React mounts normally.
+        document.open();
+        document.write(html);
+        document.close();
+        // Restore the deep link path so React Router can render the correct route.
+        history.replaceState({}, '', originalPath);
+      } catch (e) {
+        console.error('SPA fallback failed', e);
+        document.body.innerHTML = '<pre>Failed to load application shell. Please refresh.</pre>';
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="msg">Loading application...</div>
+</body>
+</html>

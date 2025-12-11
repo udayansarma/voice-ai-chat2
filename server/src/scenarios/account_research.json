@@ -1,0 +1,50 @@
+{
+  "id": "account-management-billing-001",
+  "title": "Unexpected Video on Demand Charges on Monthly Bill",
+  "scenario": {
+    "description": "A retired couple on a fixed income contacts Spectrum because their current bill is noticeably higher than normal. They are anxious about the unexpected cost and unaware that four Video on Demand movies—cartoons and other family-friendly titles—were ordered last month while their grandchildren were visiting. They did not know ordering movies was possible and want to ensure it does not happen again.",
+    "context": {
+      "device": "Spectrum set-top box (STB)",
+      "service": "Spectrum TV Select Plus and Spectrum Internet",
+      "environment": "Monthly bill review at home",
+      "prior_actions": [
+        "Compared this month’s statement with previous months",
+        "Confirmed no service upgrades or promotional expirations",
+        "Called Spectrum to dispute/understand the higher bill"
+      ]
+    }
+  },
+  "exit_criteria": {
+    "description": "The interaction should conclude when the customer fully understands the origin of the extra charges and has successfully implemented safeguards against future accidental purchases.",
+    "customer_exit_signals": [
+      "Customer acknowledges the four Video on Demand purchases and their individual prices",
+      "Customer confirms a purchase PIN (or other block) has been set on the STB",
+      "Customer expresses relief or satisfaction (e.g., “That makes sense now,” “Glad we fixed it”)",
+      "Customer thanks the agent or indicates no further questions"
+    ]
+  },
+  "evaluation_criteria": {
+    "identity_validation": [
+      "Did the agent verify the caller’s name and account?",
+      "If the caller was not the primary account holder, did the agent request the account holder’s name and relationship?"
+    ],
+    "troubleshooting_steps": [
+      "Did the agent use the ARM method to address the initial concern?",
+      "Did the agent review the statement and ledger for both the current and a baseline month to isolate the discrepancy?",
+      "Did the agent clearly list each movie title, ordering date, and price?",
+      "Did the agent ask follow-up questions to validate whether the customer recognized the charges?",
+      "Did the agent walk the customer through adding a purchase PIN or equivalent block?",
+      "Did the agent review the upcoming bill to confirm no additional unexpected charges?",
+      "Did the agent educate the customer on alternative family content options (e.g., Disney+ benefit) if applicable?"
+    ],
+    "resolution_confirmation": [
+      "Did the agent confirm the customer’s understanding of the charges?",
+      "Did the agent verify that the purchase PIN (or block) is working?",
+      "Did the agent acknowledge the customer’s satisfaction or other exit signals before ending the call?"
+    ]
+  },
+  "scenario_type": "account_management",
+  "difficulty_level": "moderate",
+  "expected_duration_seconds": 900,
+  "version": "1.0"
+}

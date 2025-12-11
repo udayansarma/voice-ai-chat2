@@ -1,0 +1,11 @@
+{
+  "id": "tech-savvy-entrepreneur",
+  "name": "Tech-Savvy Entrepreneur",
+  "demographics": {
+    "ageGroup": "Adults, 25-50",
+    "role": "Business owner, entrepreneur"
+  },
+  "behavior": "Actively uses and relies on technology for business operations. Often seeks the latest tools and solutions.",
+  "needs": "High-speed internet, advanced security features, and integration with business software.",
+  "painpoints": "Technical issues, slow response times from support, and the need for up-to-date technology solutions."
+}

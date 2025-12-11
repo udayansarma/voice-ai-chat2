@@ -1,0 +1,44 @@
+{
+  "id": "video-service-xumo-001",
+  "title": "Xumo Box Black Screen Issue",
+  "scenario": {
+    "description": "Customer is experiencing a black screen with no audio while watching The Righteous Gemstones on their Xumo box using Spectrum (Charter) video service.",
+    "context": {
+      "device": "Xumo box",
+      "service": "Spectrum (Charter) video service",
+      "environment": "Evening TV viewing",
+      "prior_actions": [
+        "Unplugged and replugged the Xumo box multiple times",
+        "Observed the device light flash briefly before turning off"
+      ]
+    }
+  },
+  "exit_criteria": {
+    "description": "The conversation should end when the customer (LLM) confirms the issue is resolved and expresses readiness to conclude.",
+    "customer_exit_signals": [
+      "Customer confirms the Xumo box is now working",
+      "Customer expresses satisfaction or relief (e.g., 'It’s back on!', 'Finally working!')",
+      "Customer thanks the agent or begins to wrap up the conversation",
+      "Customer stops expressing concern or frustration"
+    ]
+  },
+  "evaluation_criteria": {
+    "identity_validation": [
+      "Did the agent ask for the caller's name?",
+      "If the caller was not the account holder, did the agent ask for the account holder's name and relationship?"
+    ],
+    "troubleshooting_steps": [
+      "Did the agent ask the customer to unplug and replug the Xumo box?",
+      "Did the agent attempt to send a signal (HIT)?",
+      "Did the agent instruct the customer to press and hold the Home button for 5 seconds?"
+    ],
+    "resolution_confirmation": [
+      "Did the agent confirm that the issue was resolved before ending the call?",
+      "Did the agent acknowledge the customer's satisfaction or exit signals?"
+    ]
+  },
+  "scenario_type": "technical_support",
+  "difficulty_level": "moderate",
+  "expected_duration_seconds": 600,
+  "version": "1.4"
+}

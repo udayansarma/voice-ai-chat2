@@ -1,0 +1,11 @@
+{
+  "id": "off-campus-student",
+  "name": "Off-Campus Student",
+  "demographics": {
+    "ageGroup": "Young adults, 18-25",
+    "status": "College/university student living off campus"
+  },
+  "behavior": "Tech-savvy and often on a budget. Values cost-effective and reliable services.",
+  "needs": "Affordable internet and TV packages, high-speed internet for online classes and streaming, and easy-to-manage accounts.",
+  "painpoints": "High costs, slow internet speeds, and the need for flexible payment options."
+}

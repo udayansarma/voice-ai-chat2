@@ -1,0 +1,11 @@
+{
+  "id": "rv-park-resident",
+  "name": "RV Park Resident",
+  "demographics": {
+    "ageGroup": "Adults, 30-70",
+    "lifestyle": "Mobile, RV living"
+  },
+  "behavior": "Values flexibility and mobility. Needs reliable communication and internet for daily activities.",
+  "needs": "High-speed internet, mobile data, and easy-to-use technology.",
+  "painpoints": "Connectivity issues, high costs, and the need for reliable customer support."
+}

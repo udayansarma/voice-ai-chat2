@@ -1,0 +1,11 @@
+{
+  "id": "busy-retail-owner",
+  "name": "Busy Retail Owner",
+  "demographics": {
+    "ageGroup": "Adults, 30-60",
+    "role": "Retail business owner"
+  },
+  "behavior": "Focuses on customer service and in-store operations. Needs reliable communication and internet for daily operations.",
+  "needs": "Reliable internet, landline services, and point-of-sale (POS) system integration.",
+  "painpoints": "Network downtime, high costs, and the need for quick and effective customer support."
+}

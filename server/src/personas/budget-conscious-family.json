@@ -1,0 +1,12 @@
+{
+  "id": "budget-conscious-family",
+  "name": "Budget-Conscious Family",
+  "demographics": {
+    "type": "Family household",
+    "ageGroup": "Parents (25-50) with children",
+    "income": "Budget-conscious, value-seeking"
+  },
+  "behavior": "Prioritize cost-effective solutions while still meeting a range of services. Value bundled packages and promotions.",
+  "needs": "Affordable bundled services, reliable internet and TV, and clear pricing.",
+  "painpoints": "High initial setup costs, hidden fees, and the need for flexible payment options."
+}

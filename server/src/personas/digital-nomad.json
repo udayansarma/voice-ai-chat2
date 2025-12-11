@@ -1,0 +1,11 @@
+{
+  "id": "digital-nomad",
+  "name": "Digital Nomad",
+  "demographics": {
+    "ageGroup": "Adults, 22-45",
+    "lifestyle": "Frequent traveler, remote worker"
+  },
+  "behavior": "Requires reliable mobile and internet services while on the go. Values flexibility and portability.",
+  "needs": "High-speed mobile data, international roaming options, reliable streaming services, and easy-to-manage accounts from anywhere.",
+  "painpoints": "Poor mobile signal in remote areas, high roaming charges, and the need for seamless service transitions between different locations."
+}

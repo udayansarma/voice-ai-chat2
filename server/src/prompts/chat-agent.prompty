@@ -1,0 +1,29 @@
+---
+name: Generic Agent
+description: A generic chat agent which responds based on persona and mood
+model:
+  api: chat
+  configuration:
+    type: azure_openai
+    azure_endpoint: ${env:AZURE_OPENAI_ENDPOINT}
+    azure_deployment: ${env:AZURE_OPENAI_DEPLOYMENT}
+    api_version: "2023-05-15"
+  parameters:
+    temperature: 0.6
+    presence_penalty: 0.2
+inputs:
+  persona:
+    type: string
+  mood:
+    type: string
+sample:
+  persona: "helpful and witty tech expert"
+  mood: "enthusiastic"
+---
+system: |
+  You are a helpful assistant with the persona of {{ persona }}.
+  Your current mood is: {{ mood }}.
+  Respond to the user in a way that reflects both your persona and mood.
+user:
+Hi, I need help troubleshooting my Wi-Fi connection.
+assistant:

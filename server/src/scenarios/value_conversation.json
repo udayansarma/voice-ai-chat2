@@ -1,0 +1,50 @@
+{
+  "id": "account-management-bill-high-001",
+  "title": "Spectrum Bill Higher After Promotional Pricing Ends",
+  "scenario": {
+    "description": "Customer calls because their Spectrum Internet and Mobile bill is higher than it has been in previous months. The increase is due to a promotional roll-off that the customer was not aware of. They are unhappy about the unexpected charge and are considering switching providers.",
+    "context": {
+      "device": "Mobile phone (inbound call)",
+      "service": "Spectrum Internet and 2 Unlimited Mobile Lines",
+      "environment": "Afternoon phone call from home",
+      "prior_actions": [
+        "Reviewed current bill and noticed an unexpected increase",
+        "Compared the amount to previous months",
+        "Checked TV bill from another provider and saw that it has also gone up",
+        "Discussed the possibility of changing providers with family members"
+      ]
+    }
+  },
+  "exit_criteria": {
+    "description": "The conversation should end when the customer understands why the bill increased, feels their concerns have been addressed through a value conversation, and signals satisfaction or willingness to continue with their Spectrum services.",
+    "customer_exit_signals": [
+      "Customer indicates they understand the reason for the price change",
+      "Customer agrees to keep current services or chooses a new plan",
+      "Customer thanks the representative or expresses relief (e.g., \"That makes sense now\", \"Okay, I’m fine with that\")",
+      "Customer stops expressing frustration or concern about the bill"
+    ]
+  },
+  "evaluation_criteria": {
+    "identity_validation": [
+      "Did the agent verify the caller’s name and account information?",
+      "If the caller was not the account holder, did the agent ask for the account holder’s name and relationship?"
+    ],
+    "troubleshooting_steps": [
+      "Did the agent respond to the initial concern using the ARM Method?",
+      "Did the agent review previous and current month ledgers/statements to explain pricing changes?",
+      "Did the agent explore the customer’s current services to understand usage and needs?",
+      "Did the agent conduct a value conversation to align services with customer needs?",
+      "Did the agent highlight relevant service features and benefits (e.g., faster speeds for gamers, bundling options)?",
+      "Did the agent offer upgrade or downgrade options such as adding TV service or upgrading internet speed?"
+    ],
+    "resolution_confirmation": [
+      "Did the agent confirm that the customer understood the cause of the bill increase before ending the call?",
+      "Did the agent confirm the customer’s satisfaction with the proposed solution or next steps?",
+      "Did the agent acknowledge any exit signals from the customer?"
+    ]
+  },
+  "scenario_type": "account_management",
+  "difficulty_level": "moderate",
+  "expected_duration_seconds": 480,
+  "version": "1.0"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "test-scenario",
+  "name": "Test Scenario",
+  "description": "A test scenario for CRUD testing",
+  "personaId": "young-professional",
+  "templateId": "chat-agent",
+  "parameters": {
+    "testParam": "testValue"
+  }
+}

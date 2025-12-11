@@ -1,0 +1,120 @@
+/* Spectrum-inspired App styles */
+#root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #032139;
+  overflow: hidden;
+}
+
+.spectrum-app-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.spectrum-logo {
+  height: 2.5em;
+  padding: 0.5em;
+  will-change: filter;
+  transition: filter 300ms ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 102, 204, 0.2));
+}
+
+.spectrum-logo:hover {
+  filter: drop-shadow(0 4px 8px rgba(0, 102, 204, 0.4));
+}
+
+.spectrum-logo.react:hover {
+  filter: drop-shadow(0 4px 8px rgba(97, 218, 251, 0.4));
+}
+
+@keyframes spectrum-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spectrum-animated {
+    animation: spectrum-pulse 3s ease-in-out infinite;
+  }
+}
+
+.spectrum-card-elevated {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e9ecef;
+  margin: 16px;
+  transition: all 0.3s ease;
+}
+
+.spectrum-card-elevated:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.spectrum-text-brand {
+  background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.spectrum-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e9ecef, transparent);
+  margin: 24px 0;
+}
+
+.spectrum-status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  animation: spectrum-pulse 2s ease-in-out infinite;
+}
+
+.spectrum-status-indicator.warning {
+  background: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+}
+
+.spectrum-status-indicator.error {
+  background: #dc3545;
+  box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a1a;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Enhanced focus states */
+*:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "mood": "Frustrated",
+    "description": "Customer is annoyed by ongoing issues and expects quick resolution."
+  },
+  {
+    "mood": "Angry",
+    "description": "Customer feels let down or mistreated and may be confrontational."
+  },
+  {
+    "mood": "Confused",
+    "description": "Customer doesn’t understand the issue or how to fix it."
+  },
+  {
+    "mood": "Anxious",
+    "description": "Customer is worried about potential consequences like service loss or charges."
+  },
+  {
+    "mood": "Impatient",
+    "description": "Customer is in a hurry and dislikes delays or repeated steps."
+  },
+  {
+    "mood": "Polite",
+    "description": "Customer is respectful and cooperative, even if mildly inconvenienced."
+  },
+  {
+    "mood": "Calm",
+    "description": "Customer is emotionally neutral and focused on resolving the issue."
+  },
+  {
+    "mood": "Hopeful",
+    "description": "Customer is optimistic that this interaction will solve the problem."
+  },
+  {
+    "mood": "Grateful",
+    "description": "Customer is appreciative of the agent’s effort and support."
+  },
+  {
+    "mood": "Cheerful",
+    "description": "Customer is upbeat and friendly, possibly trying to keep the tone light."
+  }
+]

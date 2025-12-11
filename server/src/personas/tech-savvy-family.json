@@ -1,0 +1,12 @@
+{
+  "id": "tech-savvy-family",
+  "name": "Tech-Savvy Family",
+  "demographics": {
+    "type": "Family household",
+    "ageGroup": "Parents (30-50) with children",
+    "lifestyle": "Tech-forward, multiple users"
+  },
+  "behavior": "Highly dependent on technology for entertainment, education, and communication. They value high-speed internet and reliable streaming services.",
+  "needs": "Fast and stable internet, multiple device support, family-friendly content, parental controls, and easy-to-use interfaces.",
+  "painpoints": "Network congestion during peak hours, difficulty managing multiple accounts, and ensuring content is appropriate for children."
+}

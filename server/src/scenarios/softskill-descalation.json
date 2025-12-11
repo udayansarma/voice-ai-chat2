@@ -1,0 +1,50 @@
+{
+  "id": "internet-service-spectrum-001",
+  "title": "Soft Skills - De-escalation",
+  "scenario": {
+    "description": "An adult remote worker contacts Spectrum technical support about persistent internet latency that is interrupting work. The customer has already been transferred three times and is angry and frustrated.",
+    "context": {
+      "device": "Spectrum modem (Internet Gig)",
+      "service": "Spectrum Internet Gig and 1 Unlimited Mobile Line",
+      "environment": "Home office during work hours",
+      "prior_actions": [
+        "Customer has spoken with three different representatives and been transferred each time",
+        "Customer attempted basic modem reboot but latency persists",
+        "No previous negative interaction notes on the account"
+      ]
+    }
+  },
+  "exit_criteria": {
+    "description": "The conversation should end when the customer has calmed down, understands the next steps, and agrees to continue with modem troubleshooting or a technician appointment.",
+    "customer_exit_signals": [
+      "Customer’s tone becomes calm or neutral",
+      "Customer acknowledges the modem issue and agrees with the proposed resolution path",
+      "Customer expresses appreciation or thanks the agent",
+      "Customer stops expressing anger or frustration"
+    ]
+  },
+  "evaluation_criteria": {
+    "identity_validation": [
+      "Did the agent verify and authenticate the customer’s identity?",
+      "If someone other than the account holder called, did the agent ask for the account holder's information and relationship?"
+    ],
+    "de_escalation_techniques": [
+      "Did the agent use the ARM (Acknowledge, Respond, Move forward) method to address the customer’s frustration?",
+      "Did the agent apologize for the multiple transfers and long hold time?",
+      "Did the agent maintain a calm, empathetic tone throughout the call?"
+    ],
+    "troubleshooting_steps": [
+      "Did the agent review account memos in Agent OS for prior interaction notes?",
+      "Did the agent identify and explain that there is a modem issue?",
+      "Did the agent outline the next steps (e.g., detailed modem troubleshooting or scheduling a technician) before ending the call?"
+    ],
+    "resolution_confirmation": [
+      "Did the agent confirm the customer understood and agreed to the next steps?",
+      "Did the agent note the customer’s mood improvement or exit signals before concluding the conversation?"
+    ]
+  },
+  "scenario_type": "technical_support_deescalation",
+  "difficulty_level": "moderate",
+  "expected_duration_seconds": 480,
+  "version": "1.0"
+}

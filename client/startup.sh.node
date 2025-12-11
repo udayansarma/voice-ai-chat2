@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Substitute environment variables in config.js
+echo "🔧 Configuring runtime environment..."
+echo "VITE_API_URL: ${VITE_API_URL:-not set}"
+
+# Replace placeholder with actual environment variable
+if [ -f ./dist/config.js ]; then
+  envsubst '${VITE_API_URL}' < ./dist/config.js > ./dist/config.js.tmp
+  mv ./dist/config.js.tmp ./dist/config.js
+else
+  echo "window.ENV = { VITE_API_URL: '${VITE_API_URL:-http://localhost:5000}' };" > ./dist/config.js
+fi
+
+echo "✅ Runtime configuration complete"
+cat ./dist/config.js
+
+# Start static file server
+echo "🚀 Starting Node.js static server (serve)..."
+serve -s dist -l 80

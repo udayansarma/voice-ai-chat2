@@ -1,0 +1,22 @@
+# Example terraform.tfvars file for voice-ai-chat infrastructure
+# Copy this file to terraform.tfvars and fill in the values for your environment
+
+resource_group_name        = "your-resource-group-name"
+location                   = "eastus" # or your preferred Azure region
+environment_name            = "dev" # e.g., dev, prod
+azure_openai_endpoint      = "https://your-openai-endpoint.openai.azure.com/"
+azure_openai_key           = "your-azure-openai-api-key"
+azure_openai_deployment    = "your-openai-deployment-name"
+azure_openai_model         = "gpt-4"
+azure_speech_key           = "your-azure-speech-api-key"
+azure_speech_region        = "eastus" # or your Azure Speech region
+azure_ai_foundry_project_endpoint = "your-ai-foundry-endpoint"
+azure_evaluation_agent_id  = "your-evaluation-agent-id"
+subscription_id            = "your-azure-subscription-id"
+client_image_tag           = "latest"
+server_image_tag           = "latest"
+deployer_user_principal_name = "user@yourdomain.com"
+deployer_object_id         = "your-deployer-object-id"
+
+# Database Storage Configuration
+database_storage_quota_gb  = 5 # Storage quota in GB for SQLite database (1-5 GB recommended)

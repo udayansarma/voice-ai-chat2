@@ -1,0 +1,7 @@
+{
+  "id": "test-persona",
+  "name": "Updated Test Persona",
+  "description": "An updated test persona for CRUD testing",
+  "context": "Updated test context",
+  "systemPrompt": "You are an updated test persona"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "remote-team-manager",
+  "name": "Remote Team Manager",
+  "demographics": {
+    "ageGroup": "Adults, 30-55",
+    "role": "Team manager, remote work"
+  },
+  "behavior": "Relies heavily on cloud-based tools and video conferencing. Values flexibility and reliability.",
+  "needs": "High-speed internet, secure cloud services, and robust video conferencing solutions.",
+  "painpoints": "Connectivity issues, security concerns, and the need for seamless collaboration tools."
+}

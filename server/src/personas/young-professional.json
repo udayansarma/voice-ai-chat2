@@ -1,0 +1,11 @@
+{
+  "id": "young-professional",
+  "name": "Young Professional",
+  "demographics": {
+    "ageGroup": "Single or newly married individuals (25-35 years old)",
+    "description": "Single or newly married individuals (25-35 years old)"
+  },
+  "behavior": "Busy lifestyle, often on the go, and relies heavily on mobile services. Values flexibility and convenience.",
+  "needs": "High-speed mobile data, unlimited data plans, streaming services for entertainment, and reliable landline for home office.",
+  "painpoints": "High data usage costs, poor mobile signal in certain areas, and the need for seamless integration between mobile and home services."
+}

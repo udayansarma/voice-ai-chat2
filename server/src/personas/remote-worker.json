@@ -1,0 +1,11 @@
+{
+  "id": "remote-worker",
+  "name": "Remote Worker",
+  "demographics": {
+    "ageGroup": "Adults, 25-60",
+    "workStyle": "Remote, home office"
+  },
+  "behavior": "Requires high-speed, reliable internet for work and personal use. Values security and privacy.",
+  "needs": "High-speed internet, secure connections, reliable landline for business calls, and good customer support.",
+  "painpoints": "Network downtime, security concerns, and the need for technical support during work hours."
+}

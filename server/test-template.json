@@ -1,0 +1,7 @@
+{
+  "id": "test-template",
+  "name": "Test Template",
+  "content": "This is a test template: {{input}}",
+  "variables": ["input"],
+  "description": "A test template for CRUD testing"
+}

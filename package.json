@@ -1,0 +1,30 @@
+{
+  "name": "voice-ai-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/ai-projects": "^1.0.0-beta.8",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1",
+    "applicationinsights": "^3.12.1",
+    "cookie-parser": "^1.4.7",
+    "html2pdf.js": "^0.10.3",
+    "jspdf": "^3.0.1",
+    "marked": "^15.0.12",
+    "react-router-dom": "^7.6.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/uuid": "^10.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "service-based-business-owner",
+  "name": "Service-Based Business Owner",
+  "demographics": {
+    "ageGroup": "Adults, 30-60",
+    "role": "Owner of a service-based business"
+  },
+  "behavior": "Needs reliable communication tools to maintain client relationships. Values professionalism and reliability.",
+  "needs": "Professional-grade phone services, reliable internet, and secure data storage.",
+  "painpoints": "Poor call quality, network downtime, and the need for professional customer support."
+}

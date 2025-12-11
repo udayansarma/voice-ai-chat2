@@ -1,0 +1,11 @@
+{
+  "id": "marina-guest",
+  "name": "Marina Guest",
+  "demographics": {
+    "ageGroup": "Adults, 30-65",
+    "lifestyle": "Boating and outdoor recreation enthusiast"
+  },
+  "behavior": "Enjoys boating and outdoor activities. Needs reliable communication and internet for navigation and entertainment.",
+  "needs": "Reliable mobile and internet services, weather updates, and easy-to-use technology.",
+  "painpoints": "Poor signal in remote areas, high roaming charges, and the need for clear and simple customer support."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "apartment-resident",
+  "name": "Apartment Resident",
+  "demographics": {
+    "ageGroup": "Adults, 25-60",
+    "livingSituation": "Urban or suburban apartment resident"
+  },
+  "behavior": "Values convenience and reliability. May have a mix of work and personal needs.",
+  "needs": "Reliable internet and TV services, good customer support, and easy-to-manage accounts.",
+  "painpoints": "Network downtime, poor customer service, and the need for flexible and reliable services."
+}

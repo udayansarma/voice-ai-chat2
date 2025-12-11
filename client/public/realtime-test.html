@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure OpenAI Realtime API Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        .status {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .status.disconnected {
+            background: #fee;
+            color: #c00;
+        }
+        .status.connecting {
+            background: #fef3cd;
+            color: #856404;
+        }
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #0056b3;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover:not(:disabled) {
+            background: #c82333;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover:not(:disabled) {
+            background: #218838;
+        }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 4px;
+        }
+        .log-entry.error {
+            color: #dc3545;
+            font-weight: 500;
+        }
+        .log-entry.success {
+            color: #28a745;
+        }
+        .log-entry.info {
+            color: #17a2b8;
+        }
+        .log-entry.warning {
+            color: #ffc107;
+        }
+        .timestamp {
+            color: #6c757d;
+            margin-right: 8px;
+        }
+        .config {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .config label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #495057;
+        }
+        .config input, .config select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .metric {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Azure OpenAI Realtime API Test</h1>
+        
+        <div id="status" class="status disconnected">
+            Disconnected
+        </div>
+
+        <div class="config">
+            <h3>Configuration</h3>
+            <label>
+                Server URL:
+                <input type="text" id="serverUrl" value="ws://localhost:5000/api/realtime/session">
+            </label>
+            <label>
+                Template ID (optional):
+                <input type="text" id="templateId" placeholder="Leave empty for default">
+            </label>
+            <label>
+                Voice:
+                <select id="voice">
+                    <option value="alloy">Alloy</option>
+                    <option value="echo">Echo</option>
+                    <option value="shimmer">Shimmer</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">Events Received</div>
+                <div class="metric-value" id="eventsReceived">0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Audio Chunks</div>
+                <div class="metric-value" id="audioChunks">0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Transcriptions</div>
+                <div class="metric-value" id="transcriptions">0</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="connectBtn" class="btn-primary" onclick="connect()">Connect</button>
+            <button id="disconnectBtn" class="btn-danger" onclick="disconnect()" disabled>Disconnect</button>
+            <button id="startListeningBtn" class="btn-success" onclick="startListening()" disabled>Start Listening</button>
+            <button id="stopListeningBtn" class="btn-danger" onclick="stopListening()" disabled>Stop Listening</button>
+            <button id="sendTextBtn" class="btn-primary" onclick="sendTestText()" disabled>Send Test Text</button>
+            <button id="clearLogBtn" class="btn-primary" onclick="clearLog()">Clear Log</button>
+        </div>
+
+        <h3>Event Log</h3>
+        <div id="log" class="log"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        let audioContext = null;
+        let mediaStream = null;
+        let audioWorkletNode = null;
+        let isListening = false;
+
+        // Metrics
+        let eventsReceived = 0;
+        let audioChunks = 0;
+        let transcriptions = 0;
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `<span class="timestamp">[${timestamp}]</span>${message}`;
+            
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(status, className) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = status;
+            statusDiv.className = `status ${className}`;
+        }
+
+        function updateMetrics() {
+            document.getElementById('eventsReceived').textContent = eventsReceived;
+            document.getElementById('audioChunks').textContent = audioChunks;
+            document.getElementById('transcriptions').textContent = transcriptions;
+        }
+
+        function connect() {
+            const serverUrl = document.getElementById('serverUrl').value;
+            const templateId = document.getElementById('templateId').value;
+            const voice = document.getElementById('voice').value;
+
+            updateStatus('Connecting...', 'connecting');
+            log('Attempting to connect to server...', 'info');
+
+            // Build URL with query parameters
+            let url = serverUrl;
+            const params = new URLSearchParams();
+            if (templateId) params.append('templateId', templateId);
+            if (voice) params.append('voice', voice);
+            
+            if (params.toString()) {
+                url += '?' + params.toString();
+            }
+
+            log(`Connecting to: ${url}`, 'info');
+
+            try {
+                ws = new WebSocket(url);
+
+                ws.onopen = () => {
+                    updateStatus('Connected', 'connected');
+                    log('✅ Connected to server', 'success');
+                    document.getElementById('connectBtn').disabled = true;
+                    document.getElementById('disconnectBtn').disabled = false;
+                    document.getElementById('startListeningBtn').disabled = false;
+                    document.getElementById('sendTextBtn').disabled = false;
+                };
+
+                ws.onmessage = (event) => {
+                    eventsReceived++;
+                    updateMetrics();
+
+                    try {
+                        const data = JSON.parse(event.data);
+                        handleServerMessage(data);
+                    } catch (e) {
+                        log(`❌ Failed to parse message: ${e.message}`, 'error');
+                    }
+                };
+
+                ws.onerror = (error) => {
+                    log(`❌ WebSocket error: ${error}`, 'error');
+                    updateStatus('Error', 'disconnected');
+                };
+
+                ws.onclose = () => {
+                    updateStatus('Disconnected', 'disconnected');
+                    log('Connection closed', 'warning');
+                    document.getElementById('connectBtn').disabled = false;
+                    document.getElementById('disconnectBtn').disabled = true;
+                    document.getElementById('startListeningBtn').disabled = true;
+                    document.getElementById('stopListeningBtn').disabled = true;
+                    document.getElementById('sendTextBtn').disabled = true;
+                    
+                    if (isListening) {
+                        stopListening();
+                    }
+                };
+            } catch (error) {
+                log(`❌ Connection failed: ${error.message}`, 'error');
+                updateStatus('Error', 'disconnected');
+            }
+        }
+
+        function disconnect() {
+            if (ws) {
+                log('Disconnecting...', 'info');
+                ws.close();
+                ws = null;
+            }
+        }
+
+        function handleServerMessage(data) {
+            const { type } = data;
+
+            switch (type) {
+                case 'session.created':
+                    log(`✅ Session created: ${data.session?.id || 'unknown'}`, 'success');
+                    break;
+
+                case 'session.updated':
+                    log('Session updated', 'success');
+                    break;
+
+                case 'response.audio.delta':
+                    audioChunks++;
+                    updateMetrics();
+                    log(`🔊 Audio chunk received (${data.delta?.length || 0} bytes)`, 'info');
+                    break;
+
+                case 'conversation.item.input_audio_transcription.completed':
+                    transcriptions++;
+                    updateMetrics();
+                    log(`📝 User said: "${data.transcript}"`, 'success');
+                    break;
+
+                case 'response.audio_transcript.delta':
+                    log(`💬 Assistant: "${data.delta}"`, 'info');
+                    break;
+
+                case 'response.done':
+                    log('✅ Response complete', 'success');
+                    break;
+
+                case 'error':
+                    log(`❌ Error: ${data.error?.message || 'Unknown error'}`, 'error');
+                    break;
+
+                default:
+                    log(`📩 Event: ${type}`, 'info');
+            }
+        }
+
+        async function startListening() {
+            try {
+                log('🎤 Requesting microphone access...', 'info');
+                
+                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new AudioContext({ sampleRate: 24000 });
+                
+                const source = audioContext.createMediaStreamSource(mediaStream);
+                
+                // Create a simple processor to capture audio
+                const processor = audioContext.createScriptProcessor(4096, 1, 1);
+                
+                processor.onaudioprocess = (e) => {
+                    if (!isListening || !ws || ws.readyState !== WebSocket.OPEN) return;
+                    
+                    const inputData = e.inputBuffer.getChannelData(0);
+                    
+                    // Convert Float32Array to Int16Array (PCM16)
+                    const pcm16 = new Int16Array(inputData.length);
+                    for (let i = 0; i < inputData.length; i++) {
+                        const s = Math.max(-1, Math.min(1, inputData[i]));
+                        pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+                    }
+                    
+                    // Convert to base64
+                    const base64 = btoa(String.fromCharCode(...new Uint8Array(pcm16.buffer)));
+                    
+                    // Send to server
+                    ws.send(JSON.stringify({
+                        type: 'input_audio_buffer.append',
+                        audio: base64
+                    }));
+                };
+                
+                source.connect(processor);
+                processor.connect(audioContext.destination);
+                
+                isListening = true;
+                log('✅ Microphone active - speak now!', 'success');
+                
+                document.getElementById('startListeningBtn').disabled = true;
+                document.getElementById('stopListeningBtn').disabled = false;
+                
+            } catch (error) {
+                log(`❌ Microphone error: ${error.message}`, 'error');
+            }
+        }
+
+        function stopListening() {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+            
+            isListening = false;
+            log('🛑 Microphone stopped', 'warning');
+            
+            document.getElementById('startListeningBtn').disabled = false;
+            document.getElementById('stopListeningBtn').disabled = true;
+
+            // Commit audio buffer
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'input_audio_buffer.commit'
+                }));
+                log('Committed audio buffer', 'info');
+            }
+        }
+
+        function sendTestText() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                log('❌ Not connected', 'error');
+                return;
+            }
+
+            const testMessage = "Hello, can you hear me?";
+            
+            ws.send(JSON.stringify({
+                type: 'conversation.item.create',
+                item: {
+                    type: 'message',
+                    role: 'user',
+                    content: [
+                        {
+                            type: 'input_text',
+                            text: testMessage
+                        }
+                    ]
+                }
+            }));
+
+            ws.send(JSON.stringify({
+                type: 'response.create'
+            }));
+
+            log(`📤 Sent test text: "${testMessage}"`, 'info');
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            eventsReceived = 0;
+            audioChunks = 0;
+            transcriptions = 0;
+            updateMetrics();
+        }
+
+        // Log initial message
+        log('Ready to connect. Click "Connect" to start.', 'info');
+    </script>
+</body>
+</html>

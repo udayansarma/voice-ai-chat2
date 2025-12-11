@@ -1,0 +1,11 @@
+{
+  "id": "retired-senior",
+  "name": "Retired Senior",
+  "demographics": {
+    "ageGroup": "Older Adults (60+ years)",
+    "description": "Older Adults (60+ years)"
+  },
+  "behavior": "Prefer traditional TV and landline services but are open to modern conveniences. Value simplicity and reliability.",
+  "needs": "Easy-to-use interfaces, clear and simple billing, reliable landline service, and a good selection of live TV channels.",
+  "painpoints": "Complex technology, high costs, and difficulty with technical support."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "assisted-living-facility-staff",
+  "name": "Assisted Living Facility Staff",
+  "demographics": {
+    "role": "Facility staff",
+    "ageGroup": "Adults, 25-60",
+    "workplace": "Assisted living facility"
+  },
+  "behavior": "Manages the day-to-day operations and care of residents. Needs reliable communication tools.",
+  "needs": "Reliable landline and internet services, emergency communication systems, and easy-to-manage accounts.",
+  "painpoints": "Network downtime, complex setup and maintenance, and the need for quick and effective customer support."
+}
