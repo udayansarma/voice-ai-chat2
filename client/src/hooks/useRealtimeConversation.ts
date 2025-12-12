@@ -70,6 +70,7 @@ export const useRealtimeConversation = (): RealtimeState => {
   const audioPlaybackPositionRef = useRef<number>(0); // Track playback position in milliseconds
   const isResponseActiveRef = useRef<boolean>(false); // Track if response is currently active
   const hasInterruptedRef = useRef<boolean>(false); // Track if we've already interrupted this response
+  const assistantTranscriptRef = useRef<string>(''); // Accumulate assistant transcript deltas
 
   /**
    * Flushes buffered audio chunks to server
@@ -368,9 +369,10 @@ export const useRealtimeConversation = (): RealtimeState => {
               break;
 
             case 'response.created':
-              // Response started - mark as active
+              // Response started - mark as active and reset transcript accumulator
               isResponseActiveRef.current = true;
               hasInterruptedRef.current = false; // Reset for new response
+              assistantTranscriptRef.current = ''; // Reset transcript accumulator
               console.log('[Realtime] Response started');
               break;
 
@@ -391,8 +393,9 @@ export const useRealtimeConversation = (): RealtimeState => {
               break;
 
             case 'response.audio_transcript.delta':
-              // Handle transcript (optional: for displaying what assistant is saying)
+              // Accumulate assistant transcript deltas
               if (message.delta) {
+                assistantTranscriptRef.current += message.delta;
                 console.log('[Realtime] Assistant transcript delta:', message.delta);
               }
               break;
@@ -411,9 +414,21 @@ export const useRealtimeConversation = (): RealtimeState => {
               break;
 
             case 'response.done':
-              // Assistant finished speaking - mark response as inactive
+              // Assistant finished speaking - add complete transcript to messages
               console.log('[Realtime] Response completed');
               isResponseActiveRef.current = false;
+              
+              // Add assistant's complete transcript to messages if we have any
+              if (assistantTranscriptRef.current.trim()) {
+                console.log('[Realtime] Adding assistant transcript:', assistantTranscriptRef.current);
+                setMessages(prev => [...prev, {
+                  role: 'assistant',
+                  content: assistantTranscriptRef.current,
+                  timestamp: new Date(),
+                  audioTranscript: true
+                }]);
+                assistantTranscriptRef.current = ''; // Reset for next response
+              }
               break;
 
             case 'conversation.item.truncated':
