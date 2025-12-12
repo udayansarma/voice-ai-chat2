@@ -1,0 +1,177 @@
+[
+  {
+    "name": "API_BASE_URL",
+    "value": "https://your-aaserver-name.azurewebsites.net",
+    "slotSetting": false
+  },
+  {
+    "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+    "value": "Your connection Key",
+    "slotSetting": false
+  },
+  {
+    "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+    "value": "~3",
+    "slotSetting": false
+  },
+  {
+    "name": "AUTH_ENABLED",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "AUTH_USERS",
+    "value": "[{\"username\":\"xxxx\",\"password\":\"xxxx\"}]",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_AI_FOUNDRY_PROJECT_ENDPOINT",
+    "value": "https://Your foundry project name.services.ai.azure.com/api/projects/proj-default",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_EVALUATION_AGENT_ID",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_DEPLOYMENT",
+    "value": "gpt-4o",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_ENDPOINT",
+    "value": "https://Your-openai-name.openai.azure.com/",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_KEY",
+    "value": "YourOpenAIKey",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_MODEL",
+    "value": "gpt-4o",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_REALTIME_DEPLOYMENT",
+    "value": "gpt-realtime",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_REALTIME_ENDPOINT",
+    "value": "https://YourOpenAIRealtimeName.openai.azure.com/openai",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_OPENAI_REALTIME_KEY",
+    "value": "YourRealTimeDeploymentKey",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_SPEECH_KEY",
+    "value": "AzureSpeechKey",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_SPEECH_REGION",
+    "value": "eastus",
+    "slotSetting": false
+  },
+  {
+    "name": "AZURE_STORAGE_ACCOUNT_NAME",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "DATABASE_PATH",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ENABLE_ORYX_BUILD",
+    "value": "false",
+    "slotSetting": false
+  },
+  {
+    "name": "MESSAGE_WINDOW_SIZE",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "NODE_ENV",
+    "value": "production",
+    "slotSetting": false
+  },
+  {
+    "name": "PORT",
+    "value": "8080",
+    "slotSetting": false
+  },
+  {
+    "name": "PROMPTY_TEMPLATE",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "RATE_LIMIT_PER_MINUTE",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+    "value": "false",
+    "slotSetting": false
+  },
+  {
+    "name": "SESSION_DURATION_HOURS",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "SESSION_SECRET",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "SKIP_RESTORE",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "SQLITE_DB_PATH",
+    "value": "/home/site/data/voice-ai-documents.db",
+    "slotSetting": false
+  },
+  {
+    "name": "USE_REALTIME_API",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "USE_SEED_DATA_MODE",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "VITE_API_URL",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_NODE_DEFAULT_VERSION",
+    "value": "20-lts",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_RUN_FROM_PACKAGE",
+    "value": "0",
+    "slotSetting": false
+  },
+  {
+    "name": "XDT_MicrosoftApplicationInsights_Mode",
+    "value": "default",
+    "slotSetting": false
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ENABLE_ORYX_BUILD",
+    "value": "false",
+    "slotSetting": false
+  },
+  {
+    "name": "NODE_ENV",
+    "value": "production",
+    "slotSetting": false
+  },
+  {
+    "name": "PORT",
+    "value": "8080",
+    "slotSetting": false
+  },
+  {
+    "name": "RUNTIME_CONFIG_URL",
+    "value": "https://Your-app-server-name.azurewebsites.net/runtime-config",
+    "slotSetting": false
+  },
+  {
+    "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+    "value": "false",
+    "slotSetting": false
+  },
+  {
+    "name": "VITE_API_URL",
+    "value": "https://Your-server-name.azurewebsites.net",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_NODE_DEFAULT_VERSION",
+    "value": "20-lts",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_RUN_FROM_PACKAGE",
+    "value": "1",
+    "slotSetting": false
+  }
+]
