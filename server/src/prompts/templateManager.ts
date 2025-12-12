@@ -67,12 +67,18 @@ export class TemplateManager {
     // Use template name from parameters if provided, otherwise use default selection logic
     let templateName: string;
     
-    if (parameters?.templateName) {
+    // Check if templateName is actually meaningful (not empty/undefined/whitespace)
+    if (parameters?.templateName && parameters.templateName.trim()) {
       // The templateName from parameters is the display name from the UI
       // We need to look it up in the database to get the actual template
-      // For now, use it as-is and let the database lookup handle the matching
       templateName = parameters.templateName;
+    } else if (parameters && ('persona' in parameters || 'mood' in parameters)) {
+      // If persona or mood properties exist (even if empty strings), default to Customer Simulation
+      // This ensures consistent behavior with Azure Speech when context properties are provided
+      console.log('[TemplateManager] No template specified but context properties exist (persona/mood) - defaulting to Customer Simulation');
+      templateName = 'generic-simulation';
     } else {
+      // No context provided, use selection logic or default
       templateName = this.selectTemplate(messages, userContext);
     }
       // Start with provided parameters or extract from messages
@@ -126,6 +132,31 @@ export class TemplateManager {
         // Continue with default values
         templateParameters.scenario_details = 'General inquiry';
         templateParameters.exit_criteria = 'Issue resolved and customer satisfied';
+      }
+    }
+    
+    // Provide defaults for Customer Simulation template if not specified
+    if (templateName === 'generic-simulation' || templateName === 'Customer Simulation') {
+      if (!templateParameters.scenario_details) {
+        templateParameters.scenario_details = 'General inquiry';
+      }
+      if (!templateParameters.exit_criteria) {
+        templateParameters.exit_criteria = 'Issue resolved and customer satisfied';
+      }
+      if (!templateParameters.name) {
+        templateParameters.name = 'Customer';
+      }
+      if (!templateParameters.gender) {
+        templateParameters.gender = 'neutral';
+      }
+      if (!templateParameters.persona && !templateParameters.mood) {
+        // If neither persona nor mood specified, provide friendly defaults
+        templateParameters.persona = 'a polite customer seeking assistance';
+        templateParameters.mood = 'calm and respectful';
+      } else if (!templateParameters.persona) {
+        templateParameters.persona = 'a customer';
+      } else if (!templateParameters.mood) {
+        templateParameters.mood = 'neutral';
       }
     }
     

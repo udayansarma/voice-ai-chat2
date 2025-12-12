@@ -52,7 +52,15 @@ const RealtimeVoiceBar: React.FC<RealtimeVoiceBarProps> = ({
 
   const handleConnect = async () => {
     try {
-      const endpoint = import.meta.env.VITE_REALTIME_WS_URL || 'ws://localhost:5000/api/realtime/session';
+      // Get the base API URL from runtime config
+      const apiBaseUrl = (window as any).ENV?.VITE_API_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      
+      // Convert HTTP/HTTPS to WS/WSS for WebSocket connection
+      const wsUrl = apiBaseUrl.replace(/^http/, 'ws');
+      const endpoint = import.meta.env.VITE_REALTIME_WS_URL || `${wsUrl}/api/realtime/session`;
+      
+      console.log('[RealtimeVoiceBar] Connecting to WebSocket:', endpoint);
+      
       await connect({
         endpoint,
         voice: parameters?.voice || 'alloy',

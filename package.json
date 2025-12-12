@@ -21,7 +21,8 @@
     "jspdf": "^3.0.1",
     "marked": "^15.0.12",
     "react-router-dom": "^7.6.2",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.9",

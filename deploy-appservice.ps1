@@ -29,12 +29,14 @@ param(
   [Parameter(Mandatory=$false)] [string]$ApiBaseUrl,
   [Parameter(Mandatory=$false)] [string]$AzureSpeechKey,
   [Parameter(Mandatory=$false)] [string]$AzureSpeechRegion,
+  [Parameter(Mandatory=$false)] [string]$ApplicationInsightsConnectionString,
   [Parameter(Mandatory=$false)] [string]$NodeVersion = '20-lts',
   [switch]$SkipServer,
   [switch]$SkipClient,
   [switch]$PureStaticClient,
   [switch]$NoBuild,
   [switch]$EnableLogs,
+  [switch]$EnableApplicationInsights,
   [switch]$PostDeployInspect,
   [switch]$WhatIf
 )
@@ -646,12 +648,21 @@ function Deploy-Server {
   if ($ApiBaseUrl) { $settings += "API_BASE_URL=$ApiBaseUrl" }
   if ($AzureSpeechKey) { $settings += "AZURE_SPEECH_KEY=$AzureSpeechKey" }
   if ($AzureSpeechRegion) { $settings += "AZURE_SPEECH_REGION=$AzureSpeechRegion" }
+  if ($EnableApplicationInsights) {
+    $settings += 'ApplicationInsightsAgent_EXTENSION_VERSION=~3'
+    $settings += 'XDT_MicrosoftApplicationInsights_Mode=default'
+    if ($ApplicationInsightsConnectionString) {
+      $settings += "APPLICATIONINSIGHTS_CONNECTION_STRING=$ApplicationInsightsConnectionString"
+    }
+  }
   if ($WhatIf) {
     Write-Info "[WhatIf] Would set app settings: $($settings -join ', ')"; Write-Info '[WhatIf] Would set startup command node startup.js'
   } else {
     az webapp config appsettings set --resource-group $ResourceGroupName --name $AppName --settings $settings | Out-Null
     Write-Info 'Setting explicit startup command (node startup.js)'
     az webapp config set --resource-group $ResourceGroupName --name $AppName --startup-file "node startup.js" | Out-Null
+    Write-Info 'Enabling WebSocket support for Realtime API'
+    az webapp config set --resource-group $ResourceGroupName --name $AppName --web-sockets-enabled true | Out-Null
     if ($EnableLogs) {
       Write-Info 'Enabling application log streaming (filesystem)'
       az webapp log config --resource-group $ResourceGroupName --name $AppName --application-logging filesystem --level information --docker-container-logging off | Out-Null
@@ -683,6 +694,7 @@ function Deploy-Server {
     'AZURE_OPENAI_KEY',
     'AZURE_OPENAI_DEPLOYMENT',
     'AZURE_OPENAI_MODEL',      # Default handled in code but expose for override
+    'AZURE_OPENAI_REALTIME_DEPLOYMENT',  # Realtime API deployment name (e.g., gpt-realtime)
     'AZURE_SPEECH_KEY',
     'AZURE_SPEECH_REGION',     # Default eastus in code
     'AZURE_AI_FOUNDRY_PROJECT_ENDPOINT',
@@ -693,7 +705,8 @@ function Deploy-Server {
     'SESSION_DURATION_HOURS',
     'RATE_LIMIT_PER_MINUTE',
     'AUTH_ENABLED',
-    'PROMPTY_TEMPLATE'
+    'PROMPTY_TEMPLATE',
+    'APPLICATIONINSIGHTS_CONNECTION_STRING'  # Application Insights connection string
   )
 
   if (-not $WhatIf) {

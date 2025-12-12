@@ -28,7 +28,10 @@ const activeSessions = new Map<string, any>();
 export function initializeRealtimeWebSocket(server: any): void {
   const wss = new WebSocketServer({ 
     noServer: true,
-    path: '/api/realtime/session'
+    path: '/api/realtime/session',
+    // Disable perMessageDeflate as required for Azure App Service Linux
+    // See: https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux
+    perMessageDeflate: false
   });
 
   // Handle WebSocket upgrade
